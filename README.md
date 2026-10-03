@@ -1,242 +1,101 @@
-# Pneumonia Detection from Chest X-Ray Images
+# 🫁 Pneumonia Detection from Chest X-Ray Images
 
-A deep learning-based project for detecting **pneumonia from chest X-ray images**. The project uses a chest X-ray image dataset obtained from **Kaggle** and is developed and trained using **Python in Google Colab with Jupyter Notebook**.
+![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
+![TensorFlow](https://img.shields.io/badge/TensorFlow-2.x-orange.svg)
+![Keras](https://img.shields.io/badge/Keras-Deep%20Learning-red.svg)
+![License: MIT](https://img.shields.io/badge/License-MIT-success.svg)
+![Status](https://img.shields.io/badge/Status-Active-brightgreen.svg)
 
-## Project Overview
-
-Pneumonia is a respiratory infection that can affect one or both lungs. Chest X-ray imaging is commonly used by healthcare professionals as part of the diagnostic process.
-
-The objective of this project is to develop a machine learning/deep learning model that can classify chest X-ray images into:
-
-* **Normal**
-* **Pneumonia**
-
-The project demonstrates the complete machine learning workflow, including dataset preparation, image preprocessing, model training, evaluation, and prediction.
-
-> **Disclaimer:** This project is intended for educational and research purposes only. It is not a medical diagnostic system and should not be used as a substitute for professional medical advice or diagnosis.
+> **A Deep Learning-based computer vision project to classify and detect pneumonia from chest X-ray images using Convolutional Neural Networks (CNNs).**
 
 ---
 
-## Technologies Used
-
-* **Python**
-* **Google Colab**
-* **Jupyter Notebook**
-* **TensorFlow / Keras**
-* **NumPy**
-* **Pandas**
-* **Matplotlib**
-* **Seaborn**
-* **OpenCV / PIL**
-* **Scikit-learn**
-
----
-
-## Dataset
-
-The dataset used in this project was obtained from **Kaggle**.
-
-The dataset contains chest X-ray images categorized into two classes:
-
-```text
-NORMAL
-PNEUMONIA
-```
-
-The dataset is used for training and evaluating the deep learning model.
-
-### Dataset Source
-
-[Kaggle](https://www.kaggle.com/)
-
-> The dataset is not included directly in this repository because of its size and applicable dataset licensing/usage terms. Please refer to the original Kaggle dataset for downloading and usage information.
+## 📑 Table of Contents
+- [Project Overview](#-project-overview)
+- [Disclaimer](#-disclaimer)
+- [Dataset](#-dataset)
+- [Technologies & Libraries](#-technologies--libraries)
+- [Project Workflow](#-project-workflow)
+- [Repository Structure](#-repository-structure)
+- [Getting Started](#-getting-started)
+  - [Option 1: Google Colab (Recommended)](#option-1-google-colab-recommended)
+  - [Option 2: Local Environment](#option-2-local-environment)
+- [Model Evaluation & Results](#-model-evaluation--results)
+- [Future Improvements](#-future-improvements)
+- [License](#-license)
+- [Author](#-author)
 
 ---
 
-## Project Workflow
+## 📖 Project Overview
 
-The project follows these major steps:
+Pneumonia is a severe respiratory infection that affects one or both lungs, often requiring immediate medical intervention. Chest X-ray imaging is a standard non-invasive diagnostic tool used by healthcare professionals to detect this condition. 
 
-```text
-Kaggle Dataset
-      ↓
-Data Loading
-      ↓
-Image Preprocessing
-      ↓
-Exploratory Data Analysis
-      ↓
-Train / Validation / Test Data
-      ↓
-Model Development
-      ↓
-Model Training
-      ↓
-Model Evaluation
-      ↓
-Predictions
-      ↓
-Performance Analysis
-```
+The primary objective of this project is to develop a robust **Deep Learning classification model** capable of analyzing chest X-ray images and categorizing them into two distinct classes:
+- **`NORMAL`**: Healthy lungs with no signs of infection.
+- **`PNEUMONIA`**: Lungs exhibiting opacities indicative of a pneumonia infection.
+
+This repository demonstrates an end-to-end machine learning pipeline, encompassing dataset ingestion, data augmentation, deep learning model architecture, training, and comprehensive performance evaluation.
 
 ---
 
-## Image Preprocessing
+## ⚠️ Disclaimer
 
-The X-ray images are processed before being provided to the model. The preprocessing pipeline may include:
-
-* Image resizing
-* Pixel normalization
-* Image conversion
-* Data augmentation
-* Training/validation/test splitting
-
-These preprocessing steps help prepare the images for effective model training.
+> **For Educational and Research Purposes Only**  
+> This project is a demonstration of machine learning techniques applied to medical imaging. It is **NOT** a certified medical diagnostic system and should **never** be used as a substitute for professional medical advice, diagnosis, or treatment. Always consult a qualified healthcare provider for medical decisions.
 
 ---
 
-## Model
+## 📊 Dataset
 
-A deep learning image classification approach is used to distinguish between normal and pneumonia chest X-ray images.
+The model is trained on a publicly available Chest X-Ray dataset from Kaggle. 
 
-The model is trained using the prepared dataset and evaluated using unseen test images.
+- **Classes:** 2 (`NORMAL`, `PNEUMONIA`)
+- **Image Type:** Grayscale X-Ray scans
+- **Source:** [Kaggle Chest X-Ray Images (Pneumonia)](https://www.kaggle.com/paultimothymooney/chest-xray-pneumonia)
 
-The exact architecture and hyperparameters are available in the Jupyter Notebook.
+*Note: Due to file size limitations and licensing constraints, the dataset is not included directly in this repository. Please download it from Kaggle and configure the path in the notebook before execution.*
+
+---
+
+## 🛠 Technologies & Libraries
+
+This project leverages a modern Python data science and deep learning stack:
+
+* **Core Language:** Python 3.x
+* **Deep Learning Framework:** TensorFlow, Keras
+* **Data Manipulation:** NumPy, Pandas
+* **Computer Vision:** OpenCV (cv2), PIL (Pillow)
+* **Data Visualization:** Matplotlib, Seaborn
+* **Machine Learning Utilities:** Scikit-learn
+* **Development Environment:** Google Colab, Jupyter Notebook
 
 ---
 
-## Evaluation
+## ⚙️ Project Workflow
 
-The model is evaluated using appropriate classification metrics such as:
+```mermaid
+graph TD;
+    A[Kaggle Dataset] --> B[Data Loading];
+    B --> C[Image Preprocessing & Augmentation];
+    C --> D[Exploratory Data Analysis EDA];
+    D --> E[Train / Val / Test Split];
+    E --> F[CNN Model Development];
+    F --> G[Model Training];
+    G --> H[Model Evaluation & Tuning];
+    H --> I[Predictions on Unseen Data];
+    I --> J[Performance Analysis];
 
-* Accuracy
-* Precision
-* Recall
-* F1-score
-* Confusion Matrix
 
-Additional visualizations may also be used to understand the model's performance.
-
----
 
 ## Repository Structure
 
-```text
 pneumonia-detection/
 │
 ├── notebooks/
-│   └── pneumonia_detection.ipynb
+│   └── pneumonia_detection.ipynb   # Main execution notebook
 │
-├── README.md
-├── LICENSE
-├── .gitignore
-└── requirements.txt
-```
-
-> The repository structure may be updated as the project develops.
-
----
-
-## How to Run the Project
-
-### Option 1: Google Colab
-
-The recommended environment for this project is **Google Colab**.
-
-1. Clone or download this repository.
-2. Open the Jupyter Notebook in Google Colab.
-3. Download the required dataset from Kaggle.
-4. Configure the dataset path in the notebook.
-5. Run the notebook cells sequentially.
-
-### Option 2: Local Jupyter Environment
-
-Install the required dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
-Then start Jupyter Notebook:
-
-```bash
-jupyter notebook
-```
-
-Open the project notebook and execute the cells.
-
----
-
-## Requirements
-
-The main Python libraries used in this project include:
-
-```text
-tensorflow
-numpy
-pandas
-matplotlib
-seaborn
-scikit-learn
-opencv-python
-Pillow
-jupyter
-```
-
-The complete dependency list can be found in `requirements.txt`.
-
----
-
-## Results
-
-Model performance and evaluation results will be documented here after completing the training and evaluation process.
-
-Example metrics that can be reported include:
-
-```text
-Accuracy  : XX%
-Precision : XX%
-Recall    : XX%
-F1-Score  : XX%
-```
-
-These values should be updated with the actual results obtained from the trained model.
-
----
-
-## Future Improvements
-
-Possible future improvements include:
-
-* Experimenting with different CNN architectures
-* Transfer learning using pretrained models
-* Improving image augmentation
-* Hyperparameter tuning
-* Class imbalance handling
-* Model explainability using techniques such as Grad-CAM
-* Improving validation and testing methodology
-* Developing a simple web interface for model demonstration
-
----
-
-## Disclaimer
-
-This project is created for **educational and research purposes**.
-
-The model's predictions should **not** be considered a medical diagnosis. Real-world medical diagnosis should always be performed by qualified healthcare professionals using appropriate clinical information and diagnostic procedures.
-
----
-
-## License
-
-This project is licensed under the **MIT License**.
-
-See the [`LICENSE`](LICENSE) file for more information.
-
----
-
-## Author
-
-**Shivam Kumar**
-
-GitHub: [@shivamkumar359](https://github.com/shivamkumar359)
+├── README.md                       # Project documentation
+├── LICENSE                         # MIT License
+├── .gitignore                      # Ignored files/folders
+└── requirements.txt                # Python dependency list
