@@ -11,15 +11,18 @@ st.title("🫁 Smart Pneumonia Detection System")
 st.write("Upload a chest X-ray image to check for signs of pneumonia.")
 
 MODEL_FILE = "improved_cnn_model.h5"
-# Direct binary asset link from your GitHub release
-MODEL_URL = "https://github.com/shivamkumar359/Pneumonia_detection/releases/download/v1.0/improved_cnn_model.h5"
+
+# Direct download link from the Hugging Face Space you created earlier!
+MODEL_URL = "https://huggingface.co/spaces/dearshivam/pneumonia-prediction/resolve/main/improved_cnn_model.h5"
 
 @st.cache_resource
 def load_pneumonia_model():
-    # Download the real binary file if not present or corrupt
     if not os.path.exists(MODEL_FILE) or os.path.getsize(MODEL_FILE) < 1000000:
-        with st.spinner("Downloading full model (~28 MB), please wait a moment..."):
-            urllib.request.urlretrieve(MODEL_URL, MODEL_FILE)
+        with st.spinner("Downloading model weights from Hugging Face (~28 MB), please wait..."):
+            # Add headers to mimic a browser, avoiding 403/404 errors
+            req = urllib.request.Request(MODEL_URL, headers={'User-Agent': 'Mozilla/5.0'})
+            with urllib.request.urlopen(req) as response, open(MODEL_FILE, 'wb') as out_file:
+                out_file.write(response.read())
             
     return tf.keras.models.load_model(MODEL_FILE)
 
