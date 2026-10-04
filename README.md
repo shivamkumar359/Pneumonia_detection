@@ -1,4 +1,4 @@
-# 🫁 Pneumonia Detection from Chest X-Ray Images
+# Pneumonia Detection from Chest X-Ray Images
 
 ![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
 ![TensorFlow](https://img.shields.io/badge/TensorFlow-2.x-orange.svg)
@@ -10,7 +10,7 @@
 
 ---
 
-## 📑 Table of Contents
+##  Table of Contents   📑
 - [Project Overview](#-project-overview)
 - [Disclaimer](#-disclaimer)
 - [Dataset](#-dataset)
@@ -27,7 +27,7 @@
 
 ---
 
-## 📖 Project Overview
+##  Project Overview
 
 Pneumonia is a severe respiratory infection that affects one or both lungs, often requiring immediate medical intervention. Chest X-ray imaging is a standard non-invasive diagnostic tool used by healthcare professionals to detect this condition. 
 
@@ -39,14 +39,14 @@ This repository demonstrates an end-to-end machine learning pipeline, encompassi
 
 ---
 
-## ⚠️ Disclaimer
+##  Disclaimer  ⚠️
 
 > **For Educational and Research Purposes Only**  
 > This project is a demonstration of machine learning techniques applied to medical imaging. It is **NOT** a certified medical diagnostic system and should **never** be used as a substitute for professional medical advice, diagnosis, or treatment. Always consult a qualified healthcare provider for medical decisions.
 
 ---
 
-## 📊 Dataset
+# Dataset
 
 The model is trained on a publicly available Chest X-Ray dataset from Kaggle. 
 
@@ -58,7 +58,7 @@ The model is trained on a publicly available Chest X-Ray dataset from Kaggle.
 
 ---
 
-## 🛠 Technologies & Libraries
+## Technologies & Libraries
 
 This project leverages a modern Python data science and deep learning stack:
 
@@ -72,7 +72,7 @@ This project leverages a modern Python data science and deep learning stack:
 
 ---
 
-## ⚙️ Project Workflow
+## Project Workflow
 
 ```mermaid
 graph TD;
