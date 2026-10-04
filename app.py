@@ -1,5 +1,5 @@
 import os
-import urllib.request
+import requests
 import streamlit as st
 import numpy as np
 from PIL import Image
@@ -11,15 +11,18 @@ st.title("🫁 Smart Pneumonia Detection System")
 st.write("Upload a chest X-ray image to check for signs of pneumonia.")
 
 MODEL_FILE = "actual_model_weights.h5"
-# This is the direct RAW link to the model file currently sitting in your GitHub repo
-GITHUB_RAW_URL = "https://raw.githubusercontent.com/shivamkumar359/Pneumonia_detection/main/improved_cnn_model.h5"
+
+# This specific '/raw/' URL forces GitHub to redirect to the true 28MB binary file
+GITHUB_LFS_URL = "https://github.com/shivamkumar359/Pneumonia_detection/raw/main/improved_cnn_model.h5"
 
 @st.cache_resource
 def load_pneumonia_model():
-    # If the uncorrupted file isn't downloaded yet, download it directly from your GitHub
+    # If the file doesn't exist or is just a tiny 130-byte text pointer, download the real binary
     if not os.path.exists(MODEL_FILE) or os.path.getsize(MODEL_FILE) < 1000000:
-        with st.spinner("Downloading uncorrupted model weights from GitHub, please wait..."):
-            urllib.request.urlretrieve(GITHUB_RAW_URL, MODEL_FILE)
+        with st.spinner("Downloading uncorrupted 28MB model from GitHub. This happens only once..."):
+            response = requests.get(GITHUB_LFS_URL, allow_redirects=True)
+            with open(MODEL_FILE, "wb") as f:
+                f.write(response.content)
             
     # Load the fresh, uncorrupted model
     return tf.keras.models.load_model(MODEL_FILE)
