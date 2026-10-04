@@ -10,21 +10,29 @@ st.set_page_config(page_title="Pneumonia Detection AI", page_icon="🫁", layout
 st.title("🫁 Smart Pneumonia Detection System")
 st.write("Upload a chest X-ray image to check for signs of pneumonia.")
 
-MODEL_FILE = "actual_model_weights.h5"
+# We use a brand new file name so Streamlit ignores the old corrupted files on its hard drive
+MODEL_FILE = "fresh_model_v3.h5"
 
-# This specific '/raw/' URL forces GitHub to redirect to the true 28MB binary file
-GITHUB_LFS_URL = "https://github.com/shivamkumar359/Pneumonia_detection/raw/main/improved_cnn_model.h5"
+# This raw link forces GitHub to send the true binary file
+GITHUB_URL = "https://github.com/shivamkumar359/Pneumonia_detection/raw/main/improved_cnn_model.h5"
 
 @st.cache_resource
 def load_pneumonia_model():
-    # If the file doesn't exist or is just a tiny 130-byte text pointer, download the real binary
-    if not os.path.exists(MODEL_FILE) or os.path.getsize(MODEL_FILE) < 1000000:
-        with st.spinner("Downloading uncorrupted 28MB model from GitHub. This happens only once..."):
-            response = requests.get(GITHUB_LFS_URL, allow_redirects=True)
+    # Force a fresh download if the new file doesn't exist
+    if not os.path.exists(MODEL_FILE):
+        with st.spinner("Downloading fresh, uncorrupted model from GitHub (~28MB)... please wait 15 seconds."):
+            response = requests.get(GITHUB_URL, allow_redirects=True)
             with open(MODEL_FILE, "wb") as f:
                 f.write(response.content)
             
-    # Load the fresh, uncorrupted model
+    # DIAGNOSTIC CHECK: Ensure GitHub actually sent the 28MB file, not a tiny text pointer
+    file_size = os.path.getsize(MODEL_FILE)
+    if file_size < 1000000:  # Less than 1MB means the file is broken/corrupted
+        with open(MODEL_FILE, "r", errors="ignore") as f:
+            bad_content = f.read(200)
+        os.remove(MODEL_FILE) # Clean up the bad file
+        raise ValueError(f"GitHub blocked the download. Received file size: {file_size} bytes. Here is what GitHub sent instead of the model: {bad_content}")
+        
     return tf.keras.models.load_model(MODEL_FILE)
 
 try:
