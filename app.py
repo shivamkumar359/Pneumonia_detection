@@ -1,3 +1,5 @@
+import os
+import urllib.request
 import streamlit as st
 import numpy as np
 from PIL import Image
@@ -8,9 +10,18 @@ st.set_page_config(page_title="Pneumonia Detection AI", page_icon="🫁", layout
 st.title("🫁 Smart Pneumonia Detection System")
 st.write("Upload a chest X-ray image to check for signs of pneumonia.")
 
+MODEL_FILE = "actual_model.h5"
+# Direct download link for your raw Git LFS file
+MODEL_URL = "https://media.githubusercontent.com/media/shivamkumar359/Pneumonia_detection/main/improved_cnn_model.h5"
+
 @st.cache_resource
 def load_pneumonia_model():
-    return tf.keras.models.load_model('improved_cnn_model.h5')
+    # If the real file isn't downloaded yet or is just a small pointer, download the binary
+    if not os.path.exists(MODEL_FILE) or os.path.getsize(MODEL_FILE) < 1000000:
+        with st.spinner("Downloading full model weights (~28 MB), please wait..."):
+            urllib.request.urlretrieve(MODEL_URL, MODEL_FILE)
+            
+    return tf.keras.models.load_model(MODEL_FILE)
 
 try:
     model = load_pneumonia_model()
