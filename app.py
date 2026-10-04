@@ -1,36 +1,30 @@
-import os
-import urllib.request
 import streamlit as st
 import numpy as np
 from PIL import Image
 import tensorflow as tf
+from huggingface_hub import hf_hub_download
 
 st.set_page_config(page_title="Pneumonia Detection AI", page_icon="🫁", layout="centered")
 
 st.title("🫁 Smart Pneumonia Detection System")
 st.write("Upload a chest X-ray image to check for signs of pneumonia.")
 
-MODEL_FILE = "improved_cnn_model.h5"
-
-# Direct download link from the Hugging Face Space you created earlier!
-MODEL_URL = "https://huggingface.co/spaces/dearshivam/pneumonia-prediction/resolve/main/improved_cnn_model.h5"
-
 @st.cache_resource
 def load_pneumonia_model():
-    if not os.path.exists(MODEL_FILE) or os.path.getsize(MODEL_FILE) < 1000000:
-        with st.spinner("Downloading model weights from Hugging Face (~28 MB), please wait..."):
-            # Add headers to mimic a browser, avoiding 403/404 errors
-            req = urllib.request.Request(MODEL_URL, headers={'User-Agent': 'Mozilla/5.0'})
-            with urllib.request.urlopen(req) as response, open(MODEL_FILE, 'wb') as out_file:
-                out_file.write(response.read())
-            
-    return tf.keras.models.load_model(MODEL_FILE)
+    # This officially connects to your Hugging Face Space to download the model without 401 errors
+    model_path = hf_hub_download(
+        repo_id="dearshivam/pneumonia-prediction", 
+        repo_type="space", 
+        filename="improved_cnn_model.h5"
+    )
+    return tf.keras.models.load_model(model_path)
 
-try:
-    model = load_pneumonia_model()
-except Exception as e:
-    st.error(f"Error loading model: {e}")
-    st.stop()
+with st.spinner("Downloading and loading AI model from Hugging Face..."):
+    try:
+        model = load_pneumonia_model()
+    except Exception as e:
+        st.error(f"Error loading model: {e}")
+        st.stop()
 
 uploaded_file = st.file_uploader("Choose a Chest X-Ray image (JPEG/PNG)...", type=["jpg", "jpeg", "png"])
 
