@@ -10,15 +10,15 @@ st.set_page_config(page_title="Pneumonia Detection AI", page_icon="🫁", layout
 st.title("🫁 Smart Pneumonia Detection System")
 st.write("Upload a chest X-ray image to check for signs of pneumonia.")
 
-MODEL_FILE = "actual_model.h5"
-# Direct download link for your raw Git LFS file
-MODEL_URL = "https://media.githubusercontent.com/media/shivamkumar359/Pneumonia_detection/main/improved_cnn_model.h5"
+MODEL_FILE = "improved_cnn_model.h5"
+# Direct binary asset link from your GitHub release
+MODEL_URL = "https://github.com/shivamkumar359/Pneumonia_detection/releases/download/v1.0/improved_cnn_model.h5"
 
 @st.cache_resource
 def load_pneumonia_model():
-    # If the real file isn't downloaded yet or is just a small pointer, download the binary
+    # Download the real binary file if not present or corrupt
     if not os.path.exists(MODEL_FILE) or os.path.getsize(MODEL_FILE) < 1000000:
-        with st.spinner("Downloading full model weights (~28 MB), please wait..."):
+        with st.spinner("Downloading full model (~28 MB), please wait a moment..."):
             urllib.request.urlretrieve(MODEL_URL, MODEL_FILE)
             
     return tf.keras.models.load_model(MODEL_FILE)
