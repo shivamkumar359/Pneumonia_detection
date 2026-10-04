@@ -1,4 +1,4 @@
-# 🫁 Pneumonia Detection from Chest X-Ray Images
+# Pneumonia Detection from Chest X-Ray Images
 
 ![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
 ![TensorFlow](https://img.shields.io/badge/TensorFlow-2.x-orange.svg)
@@ -8,29 +8,29 @@
 
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://pneumonia-detection-shivam-prediction-model.streamlit.app/)
 
-> **Live Demo:** Try out the trained AI model directly in your browser!  
-> 🔗 **[Smart Pneumonia Detection Web App](https://pneumonia-detection-shivam-prediction-model.streamlit.app/)**
+> **Live Demo:** Access the trained model directly in your browser:  
+> **[Smart Pneumonia Detection Web App](https://pneumonia-detection-shivam-prediction-model.streamlit.app/)**
 
 > **A Deep Learning-based computer vision project and interactive web application to classify and detect pneumonia from chest X-ray images using Convolutional Neural Networks (CNNs).**
 
 ---
 
-## 📑 Table of Contents
-- [Project Overview](#-project-overview)
-- [Disclaimer](#-disclaimer)
-- [Dataset](#-dataset)
-- [Technologies & Libraries](#-technologies--libraries)
-- [Project Workflow](#-project-workflow)
-- [Repository Structure](#-repository-structure)
-- [Getting Started (Local Deployment)](#-getting-started-local-deployment)
-- [Model Evaluation & Results](#-model-evaluation--results)
-- [Future Improvements](#-future-improvements)
-- [License](#-license)
-- [Author](#-author)
+## Table of Contents
+- [Project Overview](#project-overview)
+- [Disclaimer](#disclaimer)
+- [Dataset](#dataset)
+- [Technologies & Libraries](#technologies--libraries)
+- [Project Workflow](#project-workflow)
+- [Repository Structure](#repository-structure)
+- [Getting Started (Local Deployment)](#getting-started-local-deployment)
+- [Model Evaluation & Results](#model-evaluation--results)
+- [Future Improvements](#future-improvements)
+- [License](#license)
+- [Author](#author)
 
 ---
 
-## 🔬 Project Overview
+## Project Overview
 
 Pneumonia is a severe respiratory infection that affects one or both lungs, often requiring immediate medical intervention. Chest X-ray imaging is a standard non-invasive diagnostic tool used by healthcare professionals to detect this condition. 
 
@@ -42,14 +42,14 @@ This repository demonstrates an end-to-end machine learning pipeline, encompassi
 
 ---
 
-## ⚠️️ Disclaimer
+## Disclaimer
 
 > **For Educational and Research Purposes Only**  
 > This project is a demonstration of machine learning techniques applied to medical imaging. It is **NOT** a certified medical diagnostic system and should **never** be used as a substitute for professional medical advice, diagnosis, or treatment. Always consult a qualified healthcare provider for medical decisions.
 
 ---
 
-## 📊 Dataset
+## Dataset
 
 The model is trained on a publicly available Chest X-Ray dataset from Kaggle. 
 
@@ -61,7 +61,7 @@ The model is trained on a publicly available Chest X-Ray dataset from Kaggle.
 
 ---
 
-## 💻 Technologies & Libraries
+## Technologies & Libraries
 
 This project leverages a modern Python data science, deep learning, and web deployment stack:
 
@@ -76,7 +76,7 @@ This project leverages a modern Python data science, deep learning, and web depl
 
 ---
 
-## ⚙️ Project Workflow
+## Project Workflow
 
 ```mermaid
 graph TD;
